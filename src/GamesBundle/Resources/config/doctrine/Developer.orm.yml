@@ -1,0 +1,13 @@
+GamesBundle\Entity\Developer:
+    type: entity
+    repositoryClass: GamesBundle\Entity\DeveloperRepository
+    table: developer
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
+            nullable: false

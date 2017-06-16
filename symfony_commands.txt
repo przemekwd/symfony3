@@ -1,2 +1,14 @@
 * START SERVER
-php console server:run
+php bin/console server:run
+
+* GENERATE DATABASE
+php bin/console doctrine:database:create
+
+* GENERATE ENTITIES BY CONFIG YAML/XML FILES
+php bin/console doctrine:generate:entities <bundle_name>
+
+* UPDATE DATABASE SCHEMA
+php bin/console doctrine:schema:update --force
+
+* GENERATE CRUD CONTROLLER
+php bin/console generate:doctrine:crud

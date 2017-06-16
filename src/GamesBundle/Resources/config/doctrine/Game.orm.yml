@@ -1,0 +1,26 @@
+GamesBundle\Entity\Game:
+    type: entity
+    repositoryClass: GamesBundle\Entity\GameRepository
+    table: game
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
+            nullable: false
+        description:
+            type: text
+            nullable: false
+        year:
+            type: integer
+            nullable: false
+    manyToOne:
+        developer:
+            targetEntity: Developer
+            joinColumn:
+                name: developer_id
+                referencedColumnName: id
+

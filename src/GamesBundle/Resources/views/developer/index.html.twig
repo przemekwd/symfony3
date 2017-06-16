@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Developers list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for developer in developers %}
+            <tr>
+                <td><a href="{{ path('developer_show', { 'id': developer.id }) }}">{{ developer.id }}</a></td>
+                <td>{{ developer.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('developer_show', { 'id': developer.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('developer_edit', { 'id': developer.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('developer_new') }}">Create a new developer</a>
+        </li>
+    </ul>
+{% endblock %}
