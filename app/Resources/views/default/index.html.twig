@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <h2>Menu</h2>
-        <div class="list-group">
-            <a href="/developers" class="list-group-item">Developers</a>
-            <a href="/games" class="list-group-item">Games</a>
-        </div>
+    <h2>Menu</h2>
+    <div class="list-group">
+        <a href="{{ path('developer_index') }}" class="list-group-item">Developers</a>
+        <a href="{{ path('game_index') }}" class="list-group-item">Games</a>
     </div>
 {% endblock %}

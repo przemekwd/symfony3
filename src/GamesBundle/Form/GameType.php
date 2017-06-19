@@ -13,7 +13,11 @@ class GameType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('description')->add('year')->add('developer');
+        $builder
+            ->add('name')
+            ->add('description')
+            ->add('year')
+            ->add('developer');
     }
     
     /**
@@ -21,15 +25,15 @@ class GameType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'GamesBundle\Entity\Game'
-        ));
+        ]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'gamesbundle_game';
     }

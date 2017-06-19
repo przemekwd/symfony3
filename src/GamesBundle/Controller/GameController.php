@@ -27,9 +27,9 @@ class GameController extends Controller
 
         $games = $em->getRepository('GamesBundle:Game')->findAll();
 
-        return $this->render('GamesBundle:game/index.html.twig', array(
+        return $this->render('game/index.html.twig', [
             'games' => $games,
-        ));
+        ]);
     }
 
     /**
@@ -49,13 +49,13 @@ class GameController extends Controller
             $em->persist($game);
             $em->flush();
 
-            return $this->redirectToRoute('game_show', array('id' => $game->getId()));
+            return $this->redirectToRoute('game_show', ['id' => $game->getId()]);
         }
 
-        return $this->render('GamesBundle:game/new.html.twig', array(
+        return $this->render('game/new.html.twig', [
             'game' => $game,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -68,10 +68,10 @@ class GameController extends Controller
     {
         $deleteForm = $this->createDeleteForm($game);
 
-        return $this->render('GamesBundle:game/show.html.twig', array(
+        return $this->render('game/show.html.twig', [
             'game' => $game,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -89,14 +89,14 @@ class GameController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('game_edit', array('id' => $game->getId()));
+            return $this->redirectToRoute('game_edit', ['id' => $game->getId()]);
         }
 
-        return $this->render('GamesBundle:game/edit.html.twig', array(
+        return $this->render('game/edit.html.twig', [
             'game' => $game,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -129,7 +129,7 @@ class GameController extends Controller
     private function createDeleteForm(Game $game)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('game_delete', array('id' => $game->getId())))
+            ->setAction($this->generateUrl('game_delete', ['id' => $game->getId()]))
             ->setMethod('DELETE')
             ->getForm()
         ;

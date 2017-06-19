@@ -6,6 +6,7 @@ use GamesBundle\Entity\Developer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -27,9 +28,9 @@ class DeveloperController extends Controller
 
         $developers = $em->getRepository('GamesBundle:Developer')->findAll();
 
-        return $this->render('GamesBundle:developer/index.html.twig', array(
+        return $this->render('developer/index.html.twig', [
             'developers' => $developers,
-        ));
+        ]);
     }
 
     /**
@@ -41,7 +42,14 @@ class DeveloperController extends Controller
     public function newAction(Request $request)
     {
         $developer = new Developer();
-        $form = $this->createForm('GamesBundle\Form\DeveloperType', $developer);
+        $form = $this->createForm('GamesBundle\Form\DeveloperType', $developer)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Create',
+                'attr' => [
+                    'class' => 'btn btn-success float-right',
+                    'role' => 'button',
+                ]]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -49,13 +57,13 @@ class DeveloperController extends Controller
             $em->persist($developer);
             $em->flush();
 
-            return $this->redirectToRoute('developer_show', array('id' => $developer->getId()));
+            return $this->redirectToRoute('developer_show', ['id' => $developer->getId()]);
         }
 
-        return $this->render('GamesBundle:developer/new.html.twig', array(
+        return $this->render('developer/new.html.twig', [
             'developer' => $developer,
             'form' => $form->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -68,10 +76,10 @@ class DeveloperController extends Controller
     {
         $deleteForm = $this->createDeleteForm($developer);
 
-        return $this->render('GamesBundle:developer/show.html.twig', array(
+        return $this->render('developer/show.html.twig', [
             'developer' => $developer,
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -89,14 +97,14 @@ class DeveloperController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('developer_edit', array('id' => $developer->getId()));
+            return $this->redirectToRoute('developer_edit', ['id' => $developer->getId()]);
         }
 
-        return $this->render('GamesBundle:developer/edit.html.twig', array(
+        return $this->render('developer/edit.html.twig', [
             'developer' => $developer,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-        ));
+        ]);
     }
 
     /**
@@ -129,9 +137,8 @@ class DeveloperController extends Controller
     private function createDeleteForm(Developer $developer)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('developer_delete', array('id' => $developer->getId())))
+            ->setAction($this->generateUrl('developer_delete', ['id' => $developer->getId()]))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

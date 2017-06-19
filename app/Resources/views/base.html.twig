@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Symfony3 & PHP7 example{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets 'css/*' filter='cssrewrite' %}
                 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -11,7 +12,9 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}
             {% javascripts 'js/*' %}
                 <script src="{{ asset_url }}"></script>
