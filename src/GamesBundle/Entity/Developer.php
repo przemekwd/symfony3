@@ -51,5 +51,91 @@ class Developer
     {
         return $this->name;
     }
-}
+    /**
+     * @var string
+     */
+    private $country;
 
+    /**
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     */
+    private $created;
+
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return Developer
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Developer
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     * @return Developer
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+}

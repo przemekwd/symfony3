@@ -12,4 +12,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class DeveloperRepository extends EntityRepository
 {
+    const COUNTRIES = [
+        'United States' => 'USA',
+        'Poland' => 'POL',
+        'Germany' => 'GER',
+        'Ukraine' => 'UKR',
+        'United Kingdom' => 'UK',
+    ];
 }

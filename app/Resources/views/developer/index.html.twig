@@ -17,12 +17,16 @@
                 <td>
                     <a href="{{ path('developer_show', { 'id': developer.id }) }}" class="btn btn-info" role="button">show</a>
                     <a href="{{ path('developer_edit', { 'id': developer.id }) }}" class="btn btn-warning" role="button">edit</a>
-                    <a href="{{ path('developer_delete', { 'id': developer.id }) }}" class="btn btn-error" role="button">delete</a>
+                    <a href="{{ path('developer_delete', { 'id': developer.id }) }}" class="btn btn-danger" role="button">delete</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('developer_new') }}" class="btn btn-success" role="button">Create a new developer</a>
+    <a href="{{ path('homepage') }}" class="btn btn-default" role="button" aria-label="Left Align">
+        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+        Back to main menu
+    </a>
+    <a href="{{ path('developer_new') }}" class="btn btn-success pull-right" role="button">Create a new developer</a>
 {% endblock %}

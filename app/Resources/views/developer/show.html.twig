@@ -1,32 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Developer</h1>
+    <h1>Developer - info</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ developer.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ developer.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3>{{ developer.name }}</h3>
+        </div>
+        <div class="panel-body">
 
-    <ul>
-        <li>
-            <a href="{{ path('developer_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('developer_edit', { 'id': developer.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
+
+    <div class="pull-right col-md-1">
+        {{ form_start(delete_form) }}
+        {{ form_end(delete_form) }}
+    </div>
+    <a href="{{ path('developer_edit', { 'id': developer.id }) }}" class="btn btn-warning pull-right" role="button">Edit</a>
+
+    <a href="{{ path('homepage') }}" class="btn btn-default" role="button" aria-label="Left Align">
+        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+        Back to main menu
+    </a>
 {% endblock %}

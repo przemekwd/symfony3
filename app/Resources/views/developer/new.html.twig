@@ -7,5 +7,17 @@
         {{ form_widget(form) }}
     {{ form_end(form) }}
 
-    <a href="{{ path('developer_index') }}" class="btn btn-warning float-left" role="button">Back to the list</a>
+    <a href="{{ path('developer_index') }}" class="btn btn-default" role="button" aria-label="Left Align">
+        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+        Back to main menu
+    </a>
+    {% block javascript %}
+        <script>
+            $(document).ready(function() {
+                $('.js-datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            });
+        </script>
+    {% endblock %}
 {% endblock %}
