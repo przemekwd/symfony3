@@ -8,6 +8,9 @@
             <h3>{{ game.name }}</h3>
         </div>
         <div class="panel-body">
+            <div class="inline pull-left">
+                <img class="img-thumbnail" src="{{ asset('uploads/game/covers/' ~ game.cover) }}"/>
+            </div>
             <table class="table-condensed">
                 <tbody>
                     <tr>

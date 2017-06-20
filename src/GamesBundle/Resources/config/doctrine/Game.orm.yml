@@ -13,10 +13,13 @@ GamesBundle\Entity\Game:
             nullable: false
         description:
             type: text
-            nullable: false
+            nullable: true
         year:
             type: integer
             nullable: false
+        cover:
+            type: string
+            length: 100
     manyToOne:
         developer:
             targetEntity: Developer

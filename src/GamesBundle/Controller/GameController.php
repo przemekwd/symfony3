@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -56,6 +58,16 @@ class GameController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $game->getCover();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+            $file->move(
+                $this->getParameter('covers_directory'),
+                $fileName
+            );
+
+            $game->setCover($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($game);
             $em->flush();
@@ -102,6 +114,14 @@ class GameController extends Controller
      */
     public function editAction(Request $request, Game $game)
     {
+        try {
+            $game->setCover(
+                new File($this->getParameter('covers_directory') . '/' . $game->getCover())
+            );
+        } catch (FileNotFoundException $e) {
+            dump($e->getMessage());
+        }
+
         $deleteForm = $this->createDeleteForm($game, 'default');
         $editForm = $this->createForm('GamesBundle\Form\GameType', $game)
             ->add('submit', SubmitType::class, [
@@ -113,6 +133,16 @@ class GameController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $file = $game->getCover();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+
+            $file->move(
+                $this->getParameter('covers_directory'),
+                $fileName
+            );
+
+            $game->setCover($fileName);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('game_edit', ['id' => $game->getId()]);

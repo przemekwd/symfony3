@@ -4,6 +4,7 @@ namespace GamesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -33,6 +34,11 @@ class GameType extends AbstractType
             ->add('developer', null, [
                 'attr' => [
                     'class' => 'form-control mb-2',
+                ],
+            ])
+            ->add('cover', FileType::class, [
+                'attr' => [
+                    'class' => 'form-control filestyle mb-2',
                 ],
             ]);
     }

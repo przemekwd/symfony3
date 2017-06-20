@@ -6,6 +6,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Year</th>
                 <th>Developer</th>
@@ -15,6 +16,7 @@
         <tbody>
         {% for game in games %}
             <tr>
+                <td><img src="{{ asset('uploads/game/covers/' ~ game.cover) }}" class="img-circle" width="50" height="50"/></td>
                 <td>{{ game.name }}</td>
                 <td>{{ game.year }}</td>
                 <td>{{ game.developer }}</td>
