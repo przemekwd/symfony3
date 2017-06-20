@@ -138,4 +138,14 @@ class Developer
     {
         return $this->created;
     }
+
+    /**
+     * Parse object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

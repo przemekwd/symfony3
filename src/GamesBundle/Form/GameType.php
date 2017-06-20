@@ -3,6 +3,7 @@
 namespace GamesBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,12 +15,28 @@ class GameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('year')
-            ->add('developer');
+            ->add('name', null, [
+                'attr' => [
+                    'class' => 'form-control mb-2',
+                ],
+            ])
+            ->add('description', null, [
+                'attr' => [
+                    'class' => 'form-control mb-2',
+                ],
+            ])
+            ->add('year', null, [
+                'attr' => [
+                    'class' => 'form-control mb-2',
+                ],
+            ])
+            ->add('developer', null, [
+                'attr' => [
+                    'class' => 'form-control mb-2',
+                ],
+            ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -37,6 +54,5 @@ class GameType extends AbstractType
     {
         return 'gamesbundle_game';
     }
-
 
 }

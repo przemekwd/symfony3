@@ -6,6 +6,7 @@ use GamesBundle\Entity\Game;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -18,6 +19,8 @@ class GameController extends Controller
     /**
      * Lists all game entities.
      *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/", name="game_index")
      * @Method("GET")
      */
@@ -27,13 +30,15 @@ class GameController extends Controller
 
         $games = $em->getRepository('GamesBundle:Game')->findAll();
 
-        return $this->render('game/index.html.twig', [
-            'games' => $games,
-        ]);
+        return $this->render('game/index.html.twig', ['games' => $games]);
     }
 
     /**
      * Creates a new game entity.
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/new", name="game_new")
      * @Method({"GET", "POST"})
@@ -41,7 +46,13 @@ class GameController extends Controller
     public function newAction(Request $request)
     {
         $game = new Game();
-        $form = $this->createForm('GamesBundle\Form\GameType', $game);
+        $form = $this->createForm('GamesBundle\Form\GameType', $game)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Create',
+                'attr' => [
+                    'class' => 'btn btn-success pull-right',
+                    'role' => 'button',
+                ]]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -49,7 +60,7 @@ class GameController extends Controller
             $em->persist($game);
             $em->flush();
 
-            return $this->redirectToRoute('game_show', ['id' => $game->getId()]);
+            return $this->redirectToRoute('game_index', ['id' => $game->getId()]);
         }
 
         return $this->render('game/new.html.twig', [
@@ -61,12 +72,16 @@ class GameController extends Controller
     /**
      * Finds and displays a game entity.
      *
+     * @param Game $game
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/{id}", name="game_show")
      * @Method("GET")
      */
     public function showAction(Game $game)
     {
-        $deleteForm = $this->createDeleteForm($game);
+        $deleteForm = $this->createDeleteForm($game, 'danger');
 
         return $this->render('game/show.html.twig', [
             'game' => $game,
@@ -77,13 +92,24 @@ class GameController extends Controller
     /**
      * Displays a form to edit an existing game entity.
      *
+     * @param Request $request
+     * @param Game $game
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/{id}/edit", name="game_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Game $game)
     {
-        $deleteForm = $this->createDeleteForm($game);
-        $editForm = $this->createForm('GamesBundle\Form\GameType', $game);
+        $deleteForm = $this->createDeleteForm($game, 'default');
+        $editForm = $this->createForm('GamesBundle\Form\GameType', $game)
+            ->add('submit', SubmitType::class, [
+                'label' => 'Edit',
+                'attr' => [
+                    'class' => 'btn btn-warning pull-right',
+                    'role' => 'button',
+                ]]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -102,12 +128,17 @@ class GameController extends Controller
     /**
      * Deletes a game entity.
      *
+     * @param Request $request
+     * @param Game $game
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     *
      * @Route("/{id}", name="game_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Game $game)
     {
-        $form = $this->createDeleteForm($game);
+        $form = $this->createDeleteForm($game, 'danger');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -123,15 +154,22 @@ class GameController extends Controller
      * Creates a form to delete a game entity.
      *
      * @param Game $game The game entity
+     * @param string $class Class for delete button
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Game $game)
+    private function createDeleteForm(Game $game, string $class)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('game_delete', ['id' => $game->getId()]))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->add('submit', SubmitType::class, [
+                'label' => 'Delete',
+                'attr' => [
+                    'class' => 'btn btn-' . $class . ' pull-right',
+                    'role' => 'button',
+                ],
+            ])
+            ->getForm();
     }
 }

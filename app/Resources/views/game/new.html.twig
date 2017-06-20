@@ -1,16 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Game creation</h1>
+    <h1>Game - creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('game_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a href="{{ path('developer_index') }}" class="btn btn-default" role="button" aria-label="Left Align">
+        <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+        Back to main menu
+    </a>
 {% endblock %}

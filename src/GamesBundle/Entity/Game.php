@@ -138,4 +138,14 @@ class Game
     {
         return $this->developer;
     }
+
+    /**
+     * Parse object to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

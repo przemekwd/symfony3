@@ -7,6 +7,8 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Founded</th>
+                <th>Country</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -14,6 +16,8 @@
         {% for developer in developers %}
             <tr>
                 <td>{{ developer.name }}</td>
+                <td>{{ developer.created|date('Y') }}</td>
+                <td>{{ developer.country }}</td>
                 <td>
                     <a href="{{ path('developer_show', { 'id': developer.id }) }}" class="btn btn-info" role="button">show</a>
                     <a href="{{ path('developer_edit', { 'id': developer.id }) }}" class="btn btn-warning" role="button">edit</a>
