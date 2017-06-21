@@ -4,7 +4,7 @@ namespace GamesBundle\Service;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class CoverUploader
+class FileUploader
 {
     private $targetDir;
 

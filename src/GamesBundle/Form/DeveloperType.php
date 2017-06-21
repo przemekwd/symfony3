@@ -6,6 +6,7 @@ use GamesBundle\Entity\DeveloperRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -41,6 +42,11 @@ class DeveloperType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'form-control js-datepicker mb-2'
+                ],
+            ])
+            ->add('logo', FileType::class, [
+                'attr' => [
+                    'class' => 'btn btn-default mb-2',
                 ],
             ]);
     }

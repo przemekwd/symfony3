@@ -1,2 +1,7 @@
 services:
-
+    GamesBundle\Service\GameCoverUploader:
+        arguments:
+            $targetDir: '%game_cover_directory%'
+    GamesBundle\Service\DeveloperLogoUploader:
+        arguments:
+            $targetDir: '%developer_logo_directory%'

@@ -177,35 +177,4 @@ class Game
         return $this->getName();
     }
 
-    /*public function upload()
-    {
-        if ($this->cover === null) {
-            return;
-        }
-
-        if (!is_dir($this->getUploadPath())) {
-            mkdir($this->getUploadPath(), '0777', true);
-        }
-    }
-
-    public function getUploadDir()
-    {
-        return 'uploads/games/covers';
-    }
-
-    public function getUploadPath()
-    {
-        return __DIR__ . '../../web/' . $this->getUploadDir() . '/';
-    }
-
-    public function getUploadFullPath()
-    {
-        return  $this->getUploadPath() . $this->cover->getClientOriginalName();
-    }
-
-    public function getWebPath()
-    {
-        return $this->getUploadDir() . '/' . $this->cover->getClientOriginalName();
-    }*/
-
 }

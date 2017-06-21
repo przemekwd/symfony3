@@ -17,5 +17,8 @@ GamesBundle\Entity\Developer:
         description:
             type: text
             nullable: true
+        logo:
+            type: string
+            length: 100
         created:
             type: datetime

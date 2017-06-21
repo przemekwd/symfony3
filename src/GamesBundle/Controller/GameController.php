@@ -3,6 +3,7 @@
 namespace GamesBundle\Controller;
 
 use GamesBundle\Entity\Game;
+use GamesBundle\Service\GameCoverUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -30,7 +31,7 @@ class GameController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $games = $em->getRepository('GamesBundle:Game')->findAll();
+        $games = $em->getRepository('GamesBundle:Game')->findBy([], ['name' => 'ASC']);
 
         return $this->render('game/index.html.twig', ['games' => $games]);
     }
@@ -58,15 +59,8 @@ class GameController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $game->getCover();
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-
-            $file->move(
-                $this->getParameter('covers_directory'),
-                $fileName
-            );
-
-            $game->setCover($fileName);
+            $coverUploader = $this->container->get(GameCoverUploader::class);
+            $game->setCover($coverUploader->upload($game->getCover()));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($game);
@@ -116,10 +110,10 @@ class GameController extends Controller
     {
         try {
             $game->setCover(
-                new File($this->getParameter('covers_directory') . '/' . $game->getCover())
+                new File($this->getParameter('game_cover_directory') . '/' . $game->getCover())
             );
         } catch (FileNotFoundException $e) {
-            dump($e->getMessage());
+            $game->setCover('');
         }
 
         $deleteForm = $this->createDeleteForm($game, 'default');
@@ -133,19 +127,12 @@ class GameController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $file = $game->getCover();
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-
-            $file->move(
-                $this->getParameter('covers_directory'),
-                $fileName
-            );
-
-            $game->setCover($fileName);
+            $coverUploader = $this->container->get(GameCoverUploader::class);
+            $game->setCover($coverUploader->upload($game->getCover()));
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('game_edit', ['id' => $game->getId()]);
+            return $this->redirectToRoute('game_index', ['id' => $game->getId()]);
         }
 
         return $this->render('game/edit.html.twig', [

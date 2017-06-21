@@ -17,3 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    # Service parameters
+    game_cover_directory: '%kernel.project_dir%/web/uploads/game/cover'
+    developer_logo_directory: '%kernel.project_dir%/web/uploads/developer/logo'

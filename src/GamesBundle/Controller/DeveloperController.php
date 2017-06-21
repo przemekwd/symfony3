@@ -2,11 +2,15 @@
 
 namespace GamesBundle\Controller;
 
+use Exception;
 use GamesBundle\Entity\Developer;
+use GamesBundle\Service\DeveloperLogoUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -28,7 +32,7 @@ class DeveloperController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $developers = $em->getRepository('GamesBundle:Developer')->findAll();
+        $developers = $em->getRepository('GamesBundle:Developer')->findBy([], ['name' => 'ASC']);
 
         return $this->render('developer/index.html.twig', ['developers' => $developers]);
     }
@@ -57,6 +61,9 @@ class DeveloperController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $logoUpload = $this->container->get(DeveloperLogoUploader::class);
+            $developer->setLogo($logoUpload->upload($developer->getLogo()));
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($developer);
             $em->flush();
@@ -103,6 +110,14 @@ class DeveloperController extends Controller
      */
     public function editAction(Request $request, Developer $developer)
     {
+        try {
+            $developer->setLogo(
+                new File($this->getParameter('developer_logo_directory') . '/' . $developer->getLogo())
+            );
+        } catch (Exception $e) {
+            $developer->setLogo('');
+        }
+
         $deleteForm = $this->createDeleteForm($developer, 'default');
         $editForm = $this->createForm('GamesBundle\Form\DeveloperType', $developer)
             ->add('submit', SubmitType::class, [
@@ -115,9 +130,12 @@ class DeveloperController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $logoUpload = $this->container->get(DeveloperLogoUploader::class);
+            $developer->setLogo($logoUpload->upload($developer->getLogo()));
+
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('developer_edit', ['id' => $developer->getId()]);
+            return $this->redirectToRoute('developer_index', ['id' => $developer->getId()]);
         }
 
         return $this->render('developer/edit.html.twig', [

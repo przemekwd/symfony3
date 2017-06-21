@@ -17,6 +17,26 @@ class Developer
      */
     private $name;
 
+    /**
+     * @var string
+     */
+    private $country;
+
+    /**
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     */
+    private $created;
+
+    /**
+     * @var string
+     */
+    private $logo;
+
 
     /**
      * Get id
@@ -51,21 +71,6 @@ class Developer
     {
         return $this->name;
     }
-    /**
-     * @var string
-     */
-    private $country;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var \DateTime
-     */
-    private $created;
-
 
     /**
      * Set country
@@ -140,6 +145,30 @@ class Developer
     }
 
     /**
+     * Set logo
+     *
+     * @param string $logo
+     *
+     * @return Developer
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
      * Parse object to string
      *
      * @return string
@@ -148,4 +177,5 @@ class Developer
     {
         return $this->getName();
     }
+
 }

@@ -6,6 +6,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th></th>
                 <th>Name</th>
                 <th>Founded</th>
                 <th>Country</th>
@@ -15,6 +16,7 @@
         <tbody>
         {% for developer in developers %}
             <tr>
+                <td><img src="{{ asset('uploads/developer/logo/' ~ developer.logo ) }}" class="carbonad-img" width="100" height="100"/></td>
                 <td>{{ developer.name }}</td>
                 <td>{{ developer.created|date('Y') }}</td>
                 <td>{{ developer.country }}</td>

@@ -38,7 +38,7 @@ class GameType extends AbstractType
             ])
             ->add('cover', FileType::class, [
                 'attr' => [
-                    'class' => 'form-control filestyle mb-2',
+                    'class' => 'btn btn-default mb-2',
                 ],
             ]);
     }
