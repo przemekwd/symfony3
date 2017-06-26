@@ -35,3 +35,8 @@
     font-weight: normal;
     margin-left: 20px;
 }
+
+li.current > a {
+    color: #fff !important;
+    background-color: #080808 !important;
+}
