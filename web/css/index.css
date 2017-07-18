@@ -40,3 +40,13 @@ li.current > a {
     color: #fff !important;
     background-color: #080808 !important;
 }
+
+.navbar-inverse {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.usermenu-last {
+    margin-right: 10px;
+}

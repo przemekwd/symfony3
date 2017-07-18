@@ -37,6 +37,7 @@ services:
     app.menu_builder:
         public: true
         class: AppBundle\Menu\MenuBuilder
-        arguments: ["@knp_menu.factory"]
+        arguments: ["@knp_menu.factory", "@security.token_storage"]
         tags:
             - { name: knp_menu.menu_builder, method: createMainMenu, alias: main }
+            - { name: knp_menu.menu_builder, method: createUserMenu, alias: user }
