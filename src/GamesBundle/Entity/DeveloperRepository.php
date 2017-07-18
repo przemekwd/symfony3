@@ -19,4 +19,5 @@ class DeveloperRepository extends EntityRepository
         'Ukraine' => 'UKR',
         'United Kingdom' => 'UK',
     ];
+
 }

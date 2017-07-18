@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Games list</h1>
+    <h1>{{ 'game.list'|trans({}, 'GamesBundle') }}</h1>
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Year</th>
-                <th>Developer</th>
-                <th>Actions</th>
+                <th>{{ 'game.form.name'|trans({}, 'GamesBundle') }}</th>
+                <th>{{ 'game.form.year'|trans({}, 'GamesBundle') }}</th>
+                <th>{{ 'game.form.developer'|trans({}, 'GamesBundle') }}</th>
+                <th>{{ 'game.form.actions'|trans({}, 'GamesBundle') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -21,9 +21,15 @@
                 <td>{{ game.year }}</td>
                 <td>{{ game.developer }}</td>
                 <td>
-                    <a href="{{ path('game_show', { 'id': game.id }) }}" class="btn btn-info" role="button">show</a>
-                    <a href="{{ path('game_edit', { 'id': game.id }) }}" class="btn btn-warning" role="button">edit</a>
-                    <a href="{{ path('game_delete', { 'id': game.id }) }}" class="btn btn-danger" role="button">delete</a>
+                    <a href="{{ path('game_show', { 'id': game.id }) }}" class="btn btn-info" role="button">
+                        {{ 'buttons.show'|trans({}, 'GamesBundle') }}
+                    </a>
+                    <a href="{{ path('game_edit', { 'id': game.id }) }}" class="btn btn-warning" role="button">
+                        {{ 'buttons.edit'|trans({}, 'GamesBundle') }}
+                    </a>
+                    <a href="{{ path('game_delete', { 'id': game.id }) }}" class="btn btn-danger" role="button">
+                        {{ 'buttons.delete'|trans({}, 'GamesBundle') }}
+                    </a>
                 </td>
             </tr>
         {% endfor %}
@@ -32,7 +38,9 @@
 
     <a href="{{ path('homepage') }}" class="btn btn-default" role="button" aria-label="Left Align">
         <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-        Back to main menu
+        {{ 'buttons.back'|trans({}, 'GamesBundle') }}
     </a>
-    <a href="{{ path('game_new') }}" class="btn btn-success pull-right" role="button">Create a new game</a>
+    <a href="{{ path('game_new') }}" class="btn btn-success pull-right" role="button">
+        {{ 'buttons.add_game'|trans({}, 'GamesBundle') }}
+    </a>
 {% endblock %}

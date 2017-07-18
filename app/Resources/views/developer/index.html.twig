@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Developers list</h1>
+    <h1>{{ 'developer.list'|trans({}, 'GamesBundle') }}</h1>
 
     <table class="table table-striped">
         <thead>
             <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Founded</th>
-                <th>Country</th>
-                <th>Actions</th>
+                <th>{{ 'developer.form.name'|trans({}, 'GamesBundle') }}</th>
+                <th>{{ 'developer.form.founded'|trans({}, 'GamesBundle') }}</th>
+                <th>{{ 'developer.form.country'|trans({}, 'GamesBundle') }}</th>
+                <th>{{ 'developer.form.actions'|trans({}, 'GamesBundle') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -21,9 +21,15 @@
                 <td>{{ developer.created|date('Y') }}</td>
                 <td>{{ developer.country }}</td>
                 <td>
-                    <a href="{{ path('developer_show', { 'id': developer.id }) }}" class="btn btn-info" role="button">show</a>
-                    <a href="{{ path('developer_edit', { 'id': developer.id }) }}" class="btn btn-warning" role="button">edit</a>
-                    <a href="{{ path('developer_delete', { 'id': developer.id }) }}" class="btn btn-danger" role="button">delete</a>
+                    <a href="{{ path('developer_show', { 'id': developer.id }) }}" class="btn btn-info" role="button">
+                        {{ 'buttons.show'|trans({}, 'GamesBundle') }}
+                    </a>
+                    <a href="{{ path('developer_edit', { 'id': developer.id }) }}" class="btn btn-warning" role="button">
+                        {{ 'buttons.edit'|trans({}, 'GamesBundle') }}
+                    </a>
+                    <a href="{{ path('developer_delete', { 'id': developer.id }) }}" class="btn btn-danger" role="button">
+                        {{ 'buttons.delete'|trans({}, 'GamesBundle') }}
+                    </a>
                 </td>
             </tr>
         {% endfor %}
@@ -32,7 +38,9 @@
 
     <a href="{{ path('homepage') }}" class="btn btn-default" role="button" aria-label="Left Align">
         <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-        Back to main menu
+        {{ 'buttons.back'|trans({}, 'GamesBundle') }}
     </a>
-    <a href="{{ path('developer_new') }}" class="btn btn-success pull-right" role="button">Create a new developer</a>
+    <a href="{{ path('developer_new') }}" class="btn btn-success pull-right" role="button">
+        {{ 'buttons.add_developer'|trans({}, 'GamesBundle') }}
+    </a>
 {% endblock %}

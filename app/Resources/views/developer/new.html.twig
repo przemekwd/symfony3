@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Developer - creation</h1>
+    <h1>{{ 'developer.new'|trans({}, 'GamesBundle') }}</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -9,7 +9,7 @@
 
     <a href="{{ path('developer_index') }}" class="btn btn-default" role="button" aria-label="Left Align">
         <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-        Back to main menu
+        {{ 'buttons.back_list'|trans({}, 'GamesBundle') }}
     </a>
     {% block javascript %}
         <script>

@@ -51,7 +51,7 @@ class GameController extends Controller
         $game = new Game();
         $form = $this->createForm('GamesBundle\Form\GameType', $game)
             ->add('submit', SubmitType::class, [
-                'label' => 'Create',
+                'label' => $this->get('translator')->trans('buttons.add', [], 'GamesBundle'),
                 'attr' => [
                     'class' => 'btn btn-success pull-right',
                     'role' => 'button',
@@ -119,7 +119,7 @@ class GameController extends Controller
         $deleteForm = $this->createDeleteForm($game, 'default');
         $editForm = $this->createForm('GamesBundle\Form\GameType', $game)
             ->add('submit', SubmitType::class, [
-                'label' => 'Edit',
+                'label' => $this->get('translator')->trans('buttons.edit', [], 'GamesBundle'),
                 'attr' => [
                     'class' => 'btn btn-warning pull-right',
                     'role' => 'button',
@@ -181,7 +181,7 @@ class GameController extends Controller
             ->setAction($this->generateUrl('game_delete', ['id' => $game->getId()]))
             ->setMethod('DELETE')
             ->add('submit', SubmitType::class, [
-                'label' => 'Delete',
+                'label' => $this->get('translator')->trans('buttons.delete', [], 'GamesBundle'),
                 'attr' => [
                     'class' => 'btn btn-' . $class . ' pull-right',
                     'role' => 'button',

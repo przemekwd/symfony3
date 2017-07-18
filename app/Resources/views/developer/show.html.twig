@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Developer - info</h1>
+    <h1>{{ 'developer.info'|trans({}, 'GamesBundle') }}</h1>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -16,10 +16,12 @@
         {{ form_start(delete_form) }}
         {{ form_end(delete_form) }}
     </div>
-    <a href="{{ path('developer_edit', { 'id': developer.id }) }}" class="btn btn-warning pull-right" role="button">Edit</a>
+    <a href="{{ path('developer_edit', { 'id': developer.id }) }}" class="btn btn-warning pull-right" role="button">
+        {{ 'buttons.edit'|trans({}, 'GamesBundle') }}
+    </a>
 
-    <a href="{{ path('homepage') }}" class="btn btn-default" role="button" aria-label="Left Align">
+    <a href="{{ path('developer_index') }}" class="btn btn-default" role="button" aria-label="Left Align">
         <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-        Back to main menu
+        {{ 'buttons.back_list'|trans({}, 'GamesBundle') }}
     </a>
 {% endblock %}

@@ -1,0 +1,37 @@
+menu:
+    home: Main
+    games: Games
+    developers: Developers
+game:
+    form:
+        name: Name
+        description: Description
+        year: Year
+        developer: Developer
+        actions: Actions
+        cover: Cover
+    list: 'Games list'
+    info: 'Game info'
+    new: 'New game'
+    edit: 'Game edit'
+developer:
+    form:
+        name: Name
+        founded: Founded
+        description: Description
+        country: Country
+        actions: Actions
+        cover: Cover
+    list: 'Developers list'
+    info: 'Developer info'
+    new: 'New developer'
+    edit: 'Developer edit'
+buttons:
+    back: 'back to main menu'
+    back_list: 'back to list'
+    add_game: 'add new game'
+    add_developer: 'add new developer'
+    show: show
+    edit: edit
+    delete: delete
+    add: add

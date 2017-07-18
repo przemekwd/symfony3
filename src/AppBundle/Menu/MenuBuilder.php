@@ -4,16 +4,19 @@ namespace AppBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
     private $factory;
     private $tokenStorage;
+    private $translator;
 
-    public function __construct(FactoryInterface $factory, TokenStorage $tokenStorage)
+    public function __construct(FactoryInterface $factory, TokenStorage $tokenStorage, TranslatorInterface $translator)
     {
         $this->factory = $factory;
         $this->tokenStorage = $tokenStorage;
+        $this->translator = $translator;
     }
 
     public function createMainMenu(array $options)
@@ -23,9 +26,9 @@ class MenuBuilder
                 'class' => 'nav navbar-nav navbar-left',
             ],
         ]);
-        $menu->addChild('Home', ['route' => 'homepage']);
-        $menu->addChild('Games', ['route' => 'game_index']);
-        $menu->addChild('Developers', ['route' => 'developer_index']);
+        $menu->addChild($this->translator->trans('menu.home', [], 'GamesBundle'), ['route' => 'homepage']);
+        $menu->addChild($this->translator->trans('menu.games', [], 'GamesBundle'), ['route' => 'game_index']);
+        $menu->addChild($this->translator->trans('menu.developers', [], 'GamesBundle'), ['route' => 'developer_index']);
 
         return $menu;
     }
@@ -40,15 +43,15 @@ class MenuBuilder
 
         if ($token = $this->tokenStorage->getToken()->getRoles()) {
             $menu->addChild($this->tokenStorage->getToken()->getUsername(), ['route' => 'homepage']);
-            $menu->addChild('Logout', [
+            $menu->addChild($this->translator->trans('layout.logout', [], 'FOSUserBundle'), [
                 'uri' => '/logout',
                 'attributes' => [
                     'class' => 'usermenu-last'
                 ],
             ]);
         } else {
-            $menu->addChild('Login', ['uri' => '/login']);
-            $menu->addChild('Register', [
+            $menu->addChild($this->translator->trans('security.login.submit', [], 'FOSUserBundle'), ['uri' => '/login']);
+            $menu->addChild($this->translator->trans('registration.submit', [], 'FOSUserBundle'), [
                 'uri' => '/register',
                 'attributes' => [
                     'class' => 'usermenu-last'

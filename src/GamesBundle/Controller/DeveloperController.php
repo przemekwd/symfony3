@@ -52,7 +52,7 @@ class DeveloperController extends Controller
         $developer = new Developer();
         $form = $this->createForm('GamesBundle\Form\DeveloperType', $developer)
             ->add('submit', SubmitType::class, [
-                'label' => 'Create',
+                'label' => $this->get('translator')->trans('buttons.add', [], 'GamesBundle'),
                 'attr' => [
                     'class' => 'btn btn-success pull-right',
                     'role' => 'button',
@@ -121,7 +121,7 @@ class DeveloperController extends Controller
         $deleteForm = $this->createDeleteForm($developer, 'default');
         $editForm = $this->createForm('GamesBundle\Form\DeveloperType', $developer)
             ->add('submit', SubmitType::class, [
-                'label' => 'Edit',
+                'label' => $this->get('translator')->trans('buttons.edit', [], 'GamesBundle'),
                 'attr' => [
                     'class' => 'btn btn-warning pull-right',
                     'role' => 'button',
@@ -184,7 +184,7 @@ class DeveloperController extends Controller
             ->setAction($this->generateUrl('developer_delete', ['id' => $developer->getId()]))
             ->setMethod('DELETE')
             ->add('submit', SubmitType::class, [
-                'label' => 'Delete',
+                'label' => $this->get('translator')->trans('buttons.delete', [], 'GamesBundle'),
                 'attr' => [
                     'class' => 'btn btn-' . $class . ' pull-right',
                     'role' => 'button',

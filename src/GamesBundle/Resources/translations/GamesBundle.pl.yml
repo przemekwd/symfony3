@@ -1,0 +1,37 @@
+menu:
+    home: Główna
+    games: Gry
+    developers: Producenci
+game:
+    form:
+        name: Nazwa
+        description: Opis
+        year: Rok
+        developer: Wydawca
+        actions: Akcje
+        cover: Okładka
+    list: 'Lista gier'
+    info: 'Informacje o grze'
+    new: 'Nowa gra'
+    edit: 'Edycja gry'
+developer:
+    form:
+        name: Nazwa
+        founded: 'Rok utworzenia'
+        description: Opis
+        country: Państwo
+        actions: Akcje
+        cover: Okładka
+    list: 'Lista wydawców gier'
+    info: 'Informacje o wydawcy'
+    new: 'Nowy wydawca'
+    edit: 'Edycja wydawcy'
+buttons:
+    back: 'powrót do strony głównej'
+    back_list: 'powrót do listy'
+    add_game: 'dodaj nową grę'
+    add_developer: 'dodaj nowego wydawcę'
+    show: pokaż
+    edit: edytuj
+    delete: usuń
+    add: dodaj
