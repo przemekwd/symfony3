@@ -29,6 +29,8 @@ class MenuBuilder
         $menu->addChild($this->translator->trans('menu.home', [], 'GamesBundle'), ['route' => 'homepage']);
         $menu->addChild($this->translator->trans('menu.games', [], 'GamesBundle'), ['route' => 'game_index']);
         $menu->addChild($this->translator->trans('menu.developers', [], 'GamesBundle'), ['route' => 'developer_index']);
+        $menu->addChild($this->translator->trans('menu.blog', [], 'BlogBundle'), ['route' => 'post_index'])
+            ->setAttribute('class', 'bold');
 
         return $menu;
     }

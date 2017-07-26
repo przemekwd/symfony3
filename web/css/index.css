@@ -48,5 +48,68 @@ li.current > a {
 }
 
 .usermenu-last {
-    margin-right: 10px;
+    padding-right: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.posts {
+    width: 800px;
+    margin: 20px auto;
+}
+
+.posts .post-table {
+    width: 100%;
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+
+.posts .post-table .post-row {
+    height: 300px;
+}
+
+.posts .post-table .post-row .first-post {
+    height: 300px;
+    width: 552px;
+    background-size: 552px 300px;
+    background-repeat: no-repeat;
+}
+
+.posts .post-table .post-row .post {
+    height: 300px;
+    width: 266px;
+    background-size: 266px 300px;
+    background-repeat: no-repeat;
+}
+
+.posts .post-table .post-row .post .pic {
+    height: 150px;
+    width: 266px;
+    background-size: 266px 150px;
+    background-repeat: no-repeat;
+}
+
+.posts .post-table .post-row .first-post .title {
+    width: 552px;
+    padding: 20px 20px;
+}
+
+.title .date {
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.title .text {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.posts .post-table .post-row .post .title {
+    height: 150px;
+    width: 266px;
+    padding: 20px 20px;
+    background-color: #e2e7ec;
 }

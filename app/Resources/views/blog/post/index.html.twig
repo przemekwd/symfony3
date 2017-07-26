@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block blog %}
+    <div class="text-center">
+        <a href="{{ path('post_new') }}" class="btn btn-success" role="button" aria-label="Left Align">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            {{ 'buttons.add_post'|trans({}, 'BlogBundle') }}
+        </a>
+        <button class="btn btn-primary">{{ 'buttons.index'|trans({}, 'BlogBundle') }}</button>
+    </div>
+
+    <div class="posts">
+        <table class="post-table">
+            <tbody>
+                {% set iter = 0 %}
+                {% set rowiter = 0 %}
+                {% for post in posts %}
+                    {% if iter == 0 %}
+                        <tr class="post-row">
+                    {% endif %}
+                    {% if rowiter == 0 %}
+                        {% if iter < 2 %}
+                            {% if iter == 0 %}
+                                <td colspan="2" class="first-post" style="background-image:url('{{ asset('uploads/post/image/' ~ post.image) }}')">
+                                    <div class="pic" style="height:180px;"></div>
+                                    <div class="title">
+                                        <p class="date">{{ post.created|date("F d, Y") }}</p>
+                                        <p class="text">{{ post.title }}</p>
+                                    </div>
+                                </td>
+                            {% else %}
+                                <td class="post">
+                                    <div class="pic" style="background-image:url('{{ asset('uploads/post/image/' ~ post.image) }}')"></div>
+                                    <div class="title">
+                                        <p class="date">{{ post.created|date("F d, Y") }}</p>
+                                        <p class="text">{{ post.title }}</p>
+                                    </div>
+                                </td>
+                            {% endif %}
+                            {% set iter = iter + 1 %}
+                        {% endif %}
+                        {% if iter == 2 %}
+                            </tr>
+                            {% set rowiter = rowiter + 1 %}
+                            {% set iter = 0 %}
+                        {% endif %}
+                    {% else %}
+                        {% if iter < 3 %}
+                            <td class="post">
+                                <div class="pic" style="background-image:url('{{ asset('uploads/post/image/' ~ post.image) }}')"></div>
+                                <div class="title">
+                                    <p class="date">{{ post.created|date("F d, Y") }}</p>
+                                    <p class="text">{{ post.title }}</p>
+                                </div>
+                            </td>
+                            {% set iter = iter + 1 %}
+                        {% endif %}
+                        {% if iter == 3 %}
+                            </tr>
+                            {% set iter = 0 %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+    BlogBundle\Service\PostImageUploader:
+        arguments:
+            $targetDir: '%post_image_directory%'

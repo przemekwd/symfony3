@@ -1,0 +1,14 @@
+menu:
+    blog: Blog
+post:
+    new: 'New post'
+    form:
+        title: Title
+        content: Content
+        image: Image
+buttons:
+    add: 'add'
+    add_post: 'add post'
+    new: 'new post'
+    back_index: 'back to main'
+    index: 'main'

@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new AppBundle\AppBundle(),
             new GamesBundle\GamesBundle(),
+            new BlogBundle\BlogBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

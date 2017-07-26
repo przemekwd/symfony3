@@ -1,0 +1,14 @@
+menu:
+    blog: Blog
+post:
+    new: 'Nowy post'
+    form:
+        title: Tytuł
+        content: Treść
+        image: Obrazek
+buttons:
+    add: 'dodaj'
+    add_post: 'dodaj post'
+    new: 'nowy post'
+    back_index: 'powrót do strony głównej'
+    index: 'strona główna'

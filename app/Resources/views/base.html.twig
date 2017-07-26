@@ -22,6 +22,7 @@
         <div class="container">
             {% block body %}{% endblock %}
         </div>
+        {% block blog %}{% endblock %}
         {% block javascripts %}
             {% javascripts '../vendor/twbs/bootstrap/dist/js/bootstrap.min.js' %}
                 <script src="{{ asset_url }}"></script>

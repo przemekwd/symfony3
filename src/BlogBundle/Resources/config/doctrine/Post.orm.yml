@@ -1,0 +1,23 @@
+BlogBundle\Entity\Post:
+    type: entity
+    repositoryClass: BlogBundle\Entity\PostRepository
+    table: post
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        title:
+            type: string
+            length: 100
+            nullable: false
+        image:
+            type: string
+            nullable: 100
+        content:
+            type: text
+        created:
+            type: datetime
+    manyToOne:
+        user:
+            targetEntity: AppBundle\Entity\User
